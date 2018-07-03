@@ -1,0 +1,150 @@
+﻿{
+  "output_file": "settings.json",
+    "LiveOnly": {
+    "type": "checkbox",
+    "value": true,
+  	"label": "Only when live",
+    "tooltip": "Command is only active when stream is live",
+  	"group": "General"
+  },
+    "StartCommand": {
+    "type": "textbox",
+    "value": "!break",
+  	"label": "Start Command",
+    "tooltip": "The command to start the break",
+  	"group": "General"
+  },
+    "EndCommand": {
+    "type": "textbox",
+    "value": "!endbreak",
+  	"label": "End Command",
+    "tooltip": "The command to end the break and vote",
+  	"group": "General"
+  },
+    "VoteCommand": {
+    "type": "textbox",
+    "value": "!like",
+  	"label": "Like Command",
+    "tooltip": "The command to like",
+  	"group": "General"
+  },
+    "Permission": {
+    "type": "dropdown",
+    "value": "Caster",
+    "items": ["Everyone","Regular","Subscriber","GameWisp Subscriber","User_Specific","Min_Rank","Min_Points","Min_Hours","Moderator","Editor","Caster"],
+    "label": "Permission level",
+    "tooltip": "Set the permission level for the star/end commands",
+    "group": "General"
+  },
+    "PermissionInfo": {
+    "type": "textbox",
+    "value": "",
+    "label": "Permission level info",
+    "tooltip": "Set the user, rank or tier for permission",
+    "group": "General"
+  },
+    "PayoutCreator": {
+    "type": "numberbox",
+    "value": 30,
+    "label": "Payout to creator of winning clip",
+    "tooltip": "How many points to give to the creator of the winning clip",
+    "group": "General"
+  },
+    "PayoutVoter": {
+    "type": "numberbox",
+    "value": 10,
+    "label": "Payout to random voter",
+    "tooltip": "How many points to give to a random voter who liked the winning clip",
+    "group": "General"
+  },
+    "Channel": {
+    "type": "textbox",
+    "value": "",
+    "label": "Channel Name",
+    "tooltip": "Channel Name for clips. Keep empty for Stream Channel",
+    "group": "ClipSettings"
+  },
+    "Period": {
+    "type": "dropdown",
+    "value": "month",
+    "items": ["day","week","month","all"],
+    "label": "Period",
+    "tooltip": "Period during which clips were made",
+    "group": "ClipSettings"
+  },
+    "Limit": {
+    "type": "slider",
+    "label": "Number of retrieved clips",
+    "value": 30,
+    "min": 0,
+    "max": 100,
+    "ticks": 1,
+    "tooltip": "How many clips to retrieve from which 10 will be randomly selected",
+    "group": "ClipSettings"
+  },
+    "Browser": {
+    "type": "dropdown",
+    "value": "firefox",
+    "items": ["firefox","chrome","iexplore"],
+    "label": "Browser",
+    "tooltip": "The browser you want to use for clips. Pick one you do not use.",
+    "group": "ClipSettings"
+  },
+    "height": {
+    "type": "numberbox",
+    "value": 378,
+    "label": "Height of clip",
+    "tooltip": "Set height of clip on browser",
+    "group": "ClipSettings"
+  },
+    "width": {
+    "type": "numberbox",
+    "value": 620,
+    "label": "Width of clip",
+    "tooltip": "Set width of clip on browser",
+    "group": "ClipSettings"
+  },
+    "StartAnnounce": {
+    "type": "textbox",
+    "value": "Send {0} followed by the number to give a like to the clip you like",
+    "label": "Start Message",
+    "tooltip": "Message to announce starting the vote \r\n {0} = vote command",
+    "group": "Responses"
+  },
+    "FinalWarning": {
+    "type": "textbox",
+    "value": "You have around {0} seconds left to like the clips",
+    "label": "Ending Warning",
+    "tooltip": "Message to announce voting will end soon. \r\n {0} = delay",
+    "group": "Responses"
+  },
+    "Delay": {
+    "type": "numberbox",
+    "value": 30,
+    "label": "Delay (seconds)",
+    "tooltip": "Delay to end voting after end command.",
+    "group": "Responses"
+  },
+    "VoteResponse": {
+    "type": "textbox",
+    "value": "{0}, thanks for liking Clip {1}",
+    "label": "Vote response",
+    "tooltip": "Message sent when user likes a clip \r\n {0} = user \r\n {1} = Clip number",
+    "group": "Responses"
+  },
+    "Response": {
+    "type": "textbox",
+    "value": "The winning clip was Clip {0} with {1} like(s). The clip is called {8}, and was created by: {2} on {9} (You can rewatch it on: {7}). {2} has received {3} {4} for creating the clips. And {5} has received {6} {4} for liking it!",
+    "label": "Winning message",
+    "tooltip": " {0} = Winning Clip number \r\n {1} = number of likes \r\n {2} = Creator \r\n {3} = Payout to creator \r\n {4} = currency name \r\n {5} = random voter \r\n {6} = Payout to random voter \r\n {7} = URL to clip \r\n {8} = Title of clip \r\n {9} = Time/Date of clip",
+    "group": "Responses"
+  },
+    "NotInChat": {
+    "type": "textbox",
+    "value": "{0} did not receive their winnings because they are not in chat!",
+    "label": "Not in chat message",
+    "tooltip": "Clip creators can only receive points if they are in chat. Message if not in chat \r\n {0} = creator",
+    "group": "Responses"
+  },
+
+}

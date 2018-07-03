@@ -3,7 +3,7 @@ streamlabs chatbot scripts to display twitch clips on stream, allowing viewers t
 
 Consists of 2 scripts. One for loading clips, and one for voting.
 
-1- Make sure your Windows user is one word with no spaces. Otherwise, in ClipLoad, change line 199 'os.system("start {}.exe {}\ClipHTML.html".format(MySettings.Browser,path))' to 'os.system("start {}.exe C:\ClipHTML.html".format(MySettings.Browser))' or any path with no spaces.
+1- Make sure your Windows user is one word with no spaces. Otherwise, in ClipLoad, change line 204 'os.system("start {}.exe {}\ClipHTML.html".format(MySettings.Browser,path))' to 'os.system("start {}.exe C:\ClipHTML.html".format(MySettings.Browser))' or any path with no spaces.
 
 2- Make sure the scripts folder is called ClipVote.
 

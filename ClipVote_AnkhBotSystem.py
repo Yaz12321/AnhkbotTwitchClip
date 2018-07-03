@@ -188,6 +188,8 @@ def Execute(data):
             global Clips
             Clips[int(data.GetParam(1))-1] = Clips[int(data.GetParam(1))-1] +[data.User]
             Parent.SendTwitchMessage(MySettings.VoteResponse.format(data.UserName,data.GetParam(1)))
+
+           
     return
 
 

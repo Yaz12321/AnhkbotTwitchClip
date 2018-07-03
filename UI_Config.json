@@ -79,7 +79,17 @@
     "min": 0,
     "max": 100,
     "ticks": 1,
-    "tooltip": "How many clips to retrieve from which 10 will be randomly selected",
+    "tooltip": "How many clips to retrieve from which clips will be randomly selected. \r\n Keep lower than how many clips are usually created within the period specified.",
+    "group": "ClipSettings"
+  },
+    "NClips": {
+    "type": "slider",
+    "label": "Number of displayed clips",
+    "value": 10,
+    "min": 1,
+    "max": 10,
+    "ticks": 1,
+    "tooltip": "Number of clips to be shown.",
     "group": "ClipSettings"
   },
     "Browser": {
@@ -102,6 +112,13 @@
     "value": 620,
     "label": "Width of clip",
     "tooltip": "Set width of clip on browser",
+    "group": "ClipSettings"
+  },
+    "NextClip": {
+    "type": "numberbox",
+    "value": 5,
+    "label": "Seconds before moving to next clip",
+    "tooltip": "Add a few seconds to account for the time it takes the browser/clip to load",
     "group": "ClipSettings"
   },
     "StartAnnounce": {

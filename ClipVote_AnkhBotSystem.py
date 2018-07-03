@@ -48,6 +48,7 @@ class Settings:
             self.PayoutVoter = 10
             self.Delay = 30
             self.NotInChat = "{0} did not receive their winnings because they are not in chat!"
+            self.NClips = 10
             
     # Reload settings on save through UI
     def ReloadSettings(self, data):
@@ -179,7 +180,7 @@ def Execute(data):
 ##        Clip1 = Clip2 = Clip3 = Clip4 = Clip5 = Clip6 = Clip7 = Clip8 = Clip9 = Clip10 = []
         
     #Voting    
-    if live == True and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.VoteCommand and Trigger == 1 and 0 < int(data.GetParam(1)) < 11:
+    if live == True and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.VoteCommand and Trigger == 1 and 0 < int(data.GetParam(1)) <= MySettings.NClips:
         
 	##Check if user already liked the clip
         if data.User not in Clips[int(data.GetParam(1))-1]:

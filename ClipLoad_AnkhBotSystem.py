@@ -57,6 +57,8 @@ class Settings:
             self.height = 378
             self.width = 620
             self.Browser = "firefox"
+            self.NClips = 10
+            self.NextClip = 5
             
     # Reload settings on save through UI
     def ReloadSettings(self, data):
@@ -219,7 +221,7 @@ def Tick():
         t = time.time()
         
         #go to next clip, up to n = 9 . Loop when reaching 10 clips.
-        if n < 9:
+        if n < MySettings.NClips - 1:
             global n
             n = n+1
         else:
@@ -230,7 +232,7 @@ def Tick():
         global end
         end = 1
 
-    if end == 1 and time.time() > t + ClipsDetails[n-1][2] + 5:   
+    if end == 1 and time.time() > t + ClipsDetails[n-1][2] + MySettings.NextClip:   
         
 
         global Trigger

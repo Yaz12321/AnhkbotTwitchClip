@@ -13,7 +13,7 @@ Consists of 2 scripts. One for loading clips, and one for voting.
 
 5- on SL-OBS (or whatever streaming software you are using), and in the scene you want to display the clips: add 2 sources:
 
-    a- a window capture: capturing the browser you want to use, setting the matching setting to same executable.
+    a- a window capture: capturing the browser you want to use.
     
     b- a Text(GDI+): set to "Read from file", and choose ClipNo.txt in ClipVote folder - this displays the clip number.
     

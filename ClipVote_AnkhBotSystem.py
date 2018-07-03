@@ -105,17 +105,6 @@ except NameError:
     
 def Execute(data):
 
-##    global Trigger
-##    global Clips
-##    global Clip1, Clip2, Clip3, Clip4, Clip5, Clip6, Clip7, Clip8, Clip9, Clip10
-##    global t
-##    global end
-##    try:
-##        end
-##    except NameError:
-##        end = 0
-            
-
     if MySettings.LiveOnly == False:
         live = True 
     else:
@@ -131,6 +120,7 @@ def Execute(data):
         global Clips
         Clips = [Clip1, Clip2, Clip3, Clip4, Clip5, Clip6, Clip7, Clip8, Clip9, Clip10]
 
+
     #End Voting
     if live == True and Parent.HasPermission(data.User, MySettings.Permission, MySettings.PermissionInfo) and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.EndCommand and Trigger == 1:
         ##Inform viewers that voting will be over
@@ -141,44 +131,6 @@ def Execute(data):
         global end
         end = 1
     
-##    if end == 1 and time.time() > t + 30:
-##        global end
-##        end = 0        
-##        global Trigger
-##        Trigger = 0
-##        Counts = []
-##        for i in Clips:
-##            #Parent.SendTwitchMessage(str(i))
-##            Counts.append(len(i))
-##        WinCount = max(Counts)
-##        Winners = [i for i, j in enumerate(Counts) if j == WinCount]
-##        n = Winners[Parent.GetRandom(0,len(Winners))]
-##        
-##
-##
-##        ClipDetails = []
-##        f = open("Services/Scripts/ClipVote/f.txt","r")
-##        from ast import literal_eval
-##        ClipDetails = literal_eval(f.read())
-##        f.close()
-##        
-##        
-##        ##Get details of winning clip
-##        CWinner =  ClipDetails[n][4].lower()
-##        WinnerURL = "https://clips.twitch.tv/{}".format(ClipDetails[n][0])
-##        WinnerTitle = ClipDetails[n][1]
-##        WinnerTime = ClipDetails[n][3]
-##        ## pick a random voter of the winning clip
-##        VWinner = Clips[n][Parent.GetRandom(0,len(Clips[n]))]
-##        ## Add points to creator
-##        Parent.AddPoints(CWinner.lower(),CWinner,MySettings.PayoutCreator)
-##        ##Add points to voter
-##        Parent.AddPoints(VWinner.lower(),VWinner,MySettings.PayoutVoter) 
-##        Parent.SendTwitchMessage(MySettings.Response.format(n+1,WinCount,CWinner.upper(),MySettings.PayoutCreator,Parent.GetCurrencyName(),VWinner.upper(),MySettings.PayoutVoter,WinnerURL,WinnerTitle,WinnerTime))  #Announce winners
-##
-##        global Clip1, Clip2, Clip3, Clip4, Clip5, Clip6, Clip7, Clip8, Clip9, Clip10
-##        Clip1 = Clip2 = Clip3 = Clip4 = Clip5 = Clip6 = Clip7 = Clip8 = Clip9 = Clip10 = []
-        
     #Voting    
     if live == True and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.VoteCommand and Trigger == 1 and 0 < int(data.GetParam(1)) <= MySettings.NClips:
         
@@ -188,8 +140,7 @@ def Execute(data):
             global Clips
             Clips[int(data.GetParam(1))-1] = Clips[int(data.GetParam(1))-1] +[data.User]
             Parent.SendTwitchMessage(MySettings.VoteResponse.format(data.UserName,data.GetParam(1)))
-
-           
+          
     return
 
 
@@ -208,14 +159,11 @@ def Check():
         Winners = [i for i, j in enumerate(Counts) if j == WinCount]
         n = Winners[Parent.GetRandom(0,len(Winners))]
         
-
-
         ClipDetails = []
         f = open("Services/Scripts/ClipVote/f.txt","r")
         from ast import literal_eval
         ClipDetails = literal_eval(f.read())
         f.close()
-        
         
         ##Get details of winning clip
         CWinner =  ClipDetails[n][4].lower()

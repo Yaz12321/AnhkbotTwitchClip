@@ -111,8 +111,6 @@ def ReloadSettings(jsonData):
     return
 
 
-
-
 def Execute(data):
 
             
@@ -123,15 +121,14 @@ def Execute(data):
     
     #Start Loading
     if live == True and Parent.HasPermission(data.User, MySettings.Permission, MySettings.PermissionInfo) and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.StartCommand:
+
         global Trigger
         Trigger = 1
         global n
-        n = 0 
-        
+        n = 0
 
         
-
-            
+        # Get clips through API    
         header = {'Accept': 'application/vnd.twitchtv.v5+json','Client-ID': '4l912jdf5x78xwe5l096mxti4tkzv3'}
         if MySettings.Channel == "":
             Channel = Parent.GetChannelName()
@@ -143,11 +140,10 @@ def Execute(data):
         result = json.loads(Parent.GetRequest(api, header))
         global path
         path = os.path.dirname(os.path.abspath(__file__))
-        
- 
-        
         global allclips
         allclips = json.loads(result['response'])['clips']
+
+        #Pick 10 clips to be displayed
         randomiser = range(int(MySettings.Limit))
         global chosenclips
         chosenclips = []
@@ -155,6 +151,8 @@ def Execute(data):
         while i < 10:
             chosenclips.append(randomiser.pop(Parent.GetRandom(0,len(randomiser))))
             i = i + 1
+
+        #Save needed details of clips on a .txt file
         global ClipsDetails
         ClipsDetails = []
         i = 0
@@ -167,17 +165,11 @@ def Execute(data):
             clipi.append(allclips[chosenclips[i]]['created_at'])
             clipi.append(allclips[chosenclips[i]]['curator']['name'])
             ClipsDetails.append(clipi)
-            i=i+1
-            
+            i=i+1      
            
-
-            
         f = open("Services/Scripts/ClipVote/f.txt","w+")
         f.write(str(ClipsDetails))
         f.close()
-
-        
-
 
         
     #Stop Loading
@@ -186,6 +178,8 @@ def Execute(data):
         Trigger = 0
         global end
         end = 0
+
+        #kill browser
         os.system("taskkill /IM {}.exe".format(MySettings.Browser))
         
 
@@ -199,42 +193,42 @@ def Tick():
         global Trigger
         Trigger = 0
 
-        
+        ## LOADING THE CLIP, Clip slug: ClipsDetails[n][0]
+
+        #Save clip URL (here using embedded URL) to .html file
         html = str("<iframe src=\"https://clips.twitch.tv/embed?clip={}\" frameborder=\"0\" allowfullscreen=\"true\" height=\"{}\" width=\"{}\"></iframe>".format(ClipsDetails[n][0],MySettings.height,MySettings.width))
         htmlf = open("Services/Scripts/ClipVote/ClipHTML.html","w+")
         htmlf.write(html)
         htmlf.close()
+        #Open browser and load html file.
         os.system("start {}.exe {}\ClipHTML.html".format(MySettings.Browser,path))
         
 
-
+        ## END OF LOADING THE CLIP
+        
+        #Load n to ClipNo.txt to be displayed on SLOBS
         Clipno = open("Services/Scripts/ClipVote/ClipNo.txt","w+")
         Clipno.write(str("Clip {}".format(n+1)))
         Clipno.close()
-        
 
-
-
-        # Set current time
-        
+        #Set current time  
         global t
         t = time.time()
         
-        #go to next clip, up to n = 9 . Loop when reaching 10 clips.
+        #Go to next clip. Loop when reaching number of clips to be displayed.
         if n < MySettings.NClips - 1:
             global n
             n = n+1
         else:
             global n
             n = 0
-        
-
         global end
         end = 1
 
+    #After duration of clip + delay
     if end == 1 and time.time() > t + ClipsDetails[n-1][2] + MySettings.NextClip:   
         
-
+        #Allow loading a new clip
         global Trigger
         Trigger = 1
         

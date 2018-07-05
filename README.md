@@ -5,7 +5,7 @@ Consists of 2 scripts. One for loading clips, and one for voting.
 
 1- Make sure your Windows user is one word with no spaces. Otherwise, in ClipLoad, change line 204 'os.system("start {}.exe {}\ClipHTML.html".format(MySettings.Browser,path))' to 'os.system("start {}.exe C:\ClipHTML.html".format(MySettings.Browser))' or any path with no spaces.
 
-2- Make sure the scripts folder is called ClipVote.
+2- Rename the scripts folder to ClipVote.
 
 3- In script settings, choose the browser you want to use. It is adivsed to use a browser you do not usually use as if you have your main browser open, OBS will capture it instead and the end command will tastkill it. 
 

@@ -3,15 +3,12 @@ streamlabs chatbot scripts to display twitch clips on stream, allowing viewers t
 
 Consists of 2 scripts. One for loading clips, and one for voting.
 
-1- Make sure your Windows user is one word with no spaces. Otherwise, in ClipLoad, change line 204 'os.system("start {}.exe {}\ClipHTML.html".format(MySettings.Browser,path))' to 'os.system("start {}.exe C:\ClipHTML.html".format(MySettings.Browser))' or any path with no spaces.
 
-2- Rename the AnkhbotTwitchClip folder to ClipVote.
+1- In script settings, choose the browser you want to use. It is adivsed to use a browser you do not usually use as if you have your main browser open, OBS will capture it instead and the end command will tastkill it. 
 
-3- In script settings, choose the browser you want to use. It is adivsed to use a browser you do not usually use as if you have your main browser open, OBS will capture it instead and the end command will tastkill it. 
+2- On the chosen browser, make sure you change the settings to opening new tabs instead of new windows. 
 
-4- On the chosen browser, make sure you change the settings to opening new tabs instead of new windows. 
-
-5- on SL-OBS (or whatever streaming software you are using), and in the scene you want to display the clips: add 2 sources:
+3- on SL-OBS (or whatever streaming software you are using), and in the scene you want to display the clips: add 2 sources:
 
     a- a window capture: capturing the browser you want to use.
     
@@ -19,5 +16,5 @@ Consists of 2 scripts. One for loading clips, and one for voting.
     
     Note: you would need to run the commands at least once before adding the sources to OBS or SLOBS.
     
-6- On Streamlabs Chatbot, set the display scene and the main scene hotkeys to macro 1 and macro 2. Set macro 1 and macro 2 to "Start" and "End" commands.
+4- On Streamlabs Chatbot, set the display scene and the main scene hotkeys to macro 1 and macro 2. Set macro 1 and macro 2 to "Start" and "End" commands.
 

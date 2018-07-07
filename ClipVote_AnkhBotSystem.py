@@ -146,6 +146,7 @@ def Execute(data):
 
 
 def Check():
+    path = os.path.dirname(os.path.abspath(__file__))
     if end == 1 and time.time() > t + MySettings.Delay:
         global end
         end = 0        
@@ -160,7 +161,7 @@ def Check():
         n = Winners[Parent.GetRandom(0,len(Winners))]
         
         ClipDetails = []
-        f = open("Services/Scripts/ClipVote/f.txt","r")
+        f = open("{}/f.txt".format(path),"r")
         from ast import literal_eval
         ClipDetails = literal_eval(f.read())
         f.close()

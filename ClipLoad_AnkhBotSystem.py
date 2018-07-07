@@ -112,6 +112,7 @@ def ReloadSettings(jsonData):
 
 
 def Execute(data):
+    path = os.path.dirname(os.path.abspath(__file__))
 
             
     if MySettings.LiveOnly == False:
@@ -167,7 +168,7 @@ def Execute(data):
             ClipsDetails.append(clipi)
             i=i+1      
            
-        f = open("Services/Scripts/ClipVote/f.txt","w+")
+        f = open("{}/f.txt".format(path),"w+")
         f.write(str(ClipsDetails))
         f.close()
 
@@ -189,6 +190,7 @@ def Execute(data):
 def Tick():
     # Load Clip n
     if Trigger == 1:
+        path = os.path.dirname(os.path.abspath(__file__))
 
         global Trigger
         Trigger = 0
@@ -197,17 +199,17 @@ def Tick():
 
         #Save clip URL (here using embedded URL) to .html file
         html = str("<iframe src=\"https://clips.twitch.tv/embed?clip={}\" frameborder=\"0\" allowfullscreen=\"true\" height=\"{}\" width=\"{}\"></iframe>".format(ClipsDetails[n][0],MySettings.height,MySettings.width))
-        htmlf = open("Services/Scripts/ClipVote/ClipHTML.html","w+")
+        htmlf = open("{}/ClipHTML.html".format(path),"w+")
         htmlf.write(html)
         htmlf.close()
         #Open browser and load html file.
-        os.system("start {}.exe {}\ClipHTML.html".format(MySettings.Browser,path))
+        os.system("start \"\" \"{}.exe\" \"{}\ClipHTML.html\"".format(MySettings.Browser,path))
         
 
         ## END OF LOADING THE CLIP
         
         #Load n to ClipNo.txt to be displayed on SLOBS
-        Clipno = open("Services/Scripts/ClipVote/ClipNo.txt","w+")
+        Clipno = open("{}/ClipNo.txt".format(path),"w+")
         Clipno.write(str("Clip {}".format(n+1)))
         Clipno.close()
 

@@ -5,6 +5,7 @@ Consists of 2 scripts. One for loading clips, and one for voting.
 
 
 1- In script settings, choose the browser you want to use. It is adivsed to use a browser you do not usually use as if you have your main browser open, OBS will capture it instead and the end command will tastkill it. 
+    Note: IE does not work with SLOBS at the moment. Firefox works perfectly.
 
 2- On the chosen browser, make sure you change the settings to opening new tabs instead of new windows. 
 

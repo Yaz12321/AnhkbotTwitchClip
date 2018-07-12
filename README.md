@@ -9,13 +9,11 @@ Consists of 2 scripts. One for loading clips, and one for voting.
 
 2- On the chosen browser, make sure you change the settings to opening new tabs instead of new windows. 
 
-3- on SL-OBS (or whatever streaming software you are using), and in the scene you want to display the clips: add 2 sources:
-
-    a- a window capture: capturing the browser you want to use.
+3- on SL-OBS (or whatever streaming software you are using), and in the scene you want to display the clips: add a window capture sources capturing the browser you want to use.
     
-    b- a Text(GDI+): set to "Read from file", and choose ClipNo.txt in ClipVote folder - this displays the clip number.
+    Note: you would need to run the commands at least once before adding the source to OBS or SLOBS.
     
-    Note: you would need to run the commands at least once before adding the sources to OBS or SLOBS.
+4- Clip number, title, and author will appear on the browser as well. You can add a background image to it (or any other images), by saving it into the folder, renaming it to "Clip_Number_Background.png"
     
-4- On Streamlabs Chatbot, set the display scene and the main scene hotkeys to macro 1 and macro 2. Set macro 1 and macro 2 to "Start" and "End" commands.
+5- On Streamlabs Chatbot, set the display scene and the main scene hotkeys to macro 1 and macro 2. Set macro 1 and macro 2 to "Start" and "End" commands.
 

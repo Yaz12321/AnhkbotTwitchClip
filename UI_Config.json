@@ -116,7 +116,7 @@
   },
     "BGIW": {
     "type": "numberbox",
-    "value": 550,
+    "value": 700,
     "label": "Background image - Width (px)",
     "tooltip": "",
     "group": "ClipColours"
@@ -152,7 +152,7 @@
     "CNFont": {
     "type": "dropdown",
     "value": "Arial",
-    "items": ["Abadi MT Condensed Light","Arial","Arial Black","Arial Nova","Bahnschrift","Book Antiqua","Calibri","Calibri Light","Calisto MT","Cambria","Candara","Century Gothic","Comic Sans MS","Consolas","Constantia","Copperplate Gothic Light","Copperplate Gothic Bold","Corbel","Courier New","Franklin GothicMedium","Gabriola","Georgia","Georgia Pro","Gill Sans Nova","Impact","Lucida Console","Lucida Handwriting","Lucida Sans Unicode","Microsoft Sans Serif","Neue Haas Grotesk Text Pro","News Gothic MT","Palatino Linotype","Rockwell Nova","Segoe Print","Segoe Script","Segoe UI Symbol","Sitka Banner","Sitka Display","Sitka Heading","Sitka Small","Sitka Subheading","Sitka Text","Tahoma","Times New Roman","Trebuchet MS","Verdana","Verdana Pro","Webdings","Westminster"],
+    "items": ["Abadi MT Condensed Light","Albertus Extra Bold","Albertus Medium","Allegro","Amazone BT","AmerType Md BT","Antique Olive","Arial Black","Arial MT","Arial Narrow","Arial","Arrus BT","Aurora Cn BT","AvantGarde Bk BT","AvantGarde Md BT","BankGothic Md BT","Bazooka","Benguiat Bk BT","BernhardFashion BT","BernhardMod BT","BinnerD","Book Antiqua","Bookman Old Style","Boulder","Bremen Bd BT","Calisto MT","Calligrapher","CaslonOpnface BT","Century Gothic","Century Schoolbook","Cezanne","CG Omega","CG Times","Charlesworth","Charter Bd BT","Charter BT","Chaucer","ChelthmITC Bk BT","Clarendon Condensed","CloisterBlack BT","Comic Sans MS","Copperplate Gothic Bold","Copperplate Gothic Light","CopperplGoth Bd BT","Cornerstone","Coronet","Courier New","Courier","Cuckoo","Dauphin","Denmark","English 111 Vivace BT","EngraversGothic BT","Exotc350 Bd BT","Fransiscan","Freefrm721 Blk BT","FrnkGothITC Bk BT","Futura Bk BT","Futura Lt BT","Futura Md BT","Futura ZBlk BT","FuturaBlack BT","Galliard BT","Garamond","Geneva","Geometr231 BT","Geometr231 Hv BT","Geometr231 Lt BT","GeoSlab 703 Lt BT","GeoSlab 703 XBd BT","GoudyHandtooled BT","GoudyOLSt BT","Haettenschweiler","Heather","Helvetica","Herald","Humanst 521 Cn BT","Humanst521 BT","Humanst521 Lt BT","Impact","Incised901 Bd BT","Incised901 BT","Incised901 Lt BT","Informal011 BT","Jester","Kabel Bk BT","Kabel Ult BT","Kaufmann Bd BT","Kaufmann BT","Korinna BT","Letter Gothic","Lithograph Light","Lithograph","Long Island","Lucida Console","Lucida Handwriting","Lucida Sans Unicode","Lucida Sans","Lydian BT","Marigold","Market","Matisse ITC","Monotype Corsiva","MS LineDraw","News GothicMT","NewsGoth BT","OCR A Extended","Old Century","Onyx BT","OzHandicraft BT","Pegasus","Pickwick","Poster","PosterBodoni BT","PTBarnum BT","Pythagoras","Ribbon131 Bd BT","Sceptre","Serifa BT","Serifa Th BT","ShelleyVolante BT","Sherwood","Signboard","Socket","Souvenir Lt BT","Staccato222 BT","Steamer","Storybook","Subway","Swis721 BlkEx BT","Swiss911 XCm BT","Tahoma","Technical","Teletype","Tempus Sans ITC","Times New Roman PS","Times New Roman","Times","Trebuchet MS","Tristan","Tubular","TypoUpright BT","Unicorn","Univers Condensed","Univers","Vagabond","Verdana","Westminster","ZapfEllipt BT","ZapfHumnst BT","ZapfHumnst Dm BT","Zurich BlkEx BT","Zurich Ex BT"],
     "label": "Clip Number Font",
     "tooltip": "Not all fonts work.",
     "group": "ClipColours"
@@ -215,14 +215,14 @@
   },
     "VT": {
     "type": "numberbox",
-    "value": 0,
+    "value": 20,
     "label": "Clip position - Top (px)",
     "tooltip": "",
     "group": "ClipColours"
   },
     "VL": {
     "type": "numberbox",
-    "value": 10,
+    "value": 20,
     "label": "Clip posotion - Left (px)",
     "tooltip": "",
     "group": "ClipColours"

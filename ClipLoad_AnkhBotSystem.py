@@ -6,15 +6,13 @@ clr.AddReference("IronPython.SQLite.dll")
 clr.AddReference("IronPython.Modules.dll")
 import time
 
-
-
 #---------------------------------------
 #	[Required]	Script Information
 #---------------------------------------
 ScriptName = "ClipLoad"
 Website = ""
 Creator = "Yaz12321"
-Version = "1.0"
+Version = "1.1"
 Description = "Load twitch clips to browser (to be captured by OBS)"
 
 settingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
@@ -24,7 +22,11 @@ settingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
 #---------------------------------------
 
 # Version: 
-
+# > 1.1 <
+    # Changed clip upload: Clips now upload on a single browser page
+    # Added Clip Number and Details to clip on browser
+    # Added colours
+    # fixed bugs
 # > 1.0 < 
     # Official Release
 
@@ -59,6 +61,21 @@ class Settings:
             self.Browser = "firefox"
             self.NClips = 10
             self.NextClip = 5
+            self.BGColour = "blue"
+            self.CNColour = "red"
+            self.CNFont = "Arial"
+            self.CNSize = 3
+            self.CNB = False
+            self.CNI = False
+            self.CNU = False
+            self.BGIW = 550
+            self.BGIH = 50
+            self.BGIT = 0
+            self.BGIL = 0
+            self.CNT = 0 
+            self.CNL = 150
+            self.VT = 0
+            self.VL = 10
             
     # Reload settings on save through UI
     def ReloadSettings(self, data):
@@ -122,7 +139,11 @@ def Execute(data):
     
     #Start Loading
     if live == True and Parent.HasPermission(data.User, MySettings.Permission, MySettings.PermissionInfo) and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.StartCommand:
-
+        htmlf = open("{}/ClipHTML.html".format(path),"w+")
+        htmlf.write("<!DOCTYPE html> <html><head> <meta http-equiv=\"refresh\" content=\"1\"> </head> <body> </body> </html>")
+        htmlf.close()
+        os.system("start \"\" \"{}.exe\" \"{}\ClipHTML.html\"".format(MySettings.Browser,path)) #test
+        time.sleep(MySettings.NextClip)
         global Trigger
         Trigger = 1
         global n
@@ -141,6 +162,7 @@ def Execute(data):
         result = json.loads(Parent.GetRequest(api, header))
         global path
         path = os.path.dirname(os.path.abspath(__file__))
+        
         global allclips
         allclips = json.loads(result['response'])['clips']
 
@@ -160,11 +182,16 @@ def Execute(data):
         while i < 10:
             clipi = []
             
-            clipi.append(allclips[chosenclips[i]]['slug'])
-            clipi.append(allclips[chosenclips[i]]['title'])
-            clipi.append(allclips[chosenclips[i]]['duration'])
-            clipi.append(allclips[chosenclips[i]]['created_at'])
-            clipi.append(allclips[chosenclips[i]]['curator']['name'])
+            clipi.append(allclips[chosenclips[i]]['slug']) #ClipsDetails[0]
+            clipi.append(allclips[chosenclips[i]]['title']) #ClipsDetails[1]
+            clipi.append(allclips[chosenclips[i]]['duration']) #ClipsDetails[2]
+            clipi.append(allclips[chosenclips[i]]['created_at']) #ClipsDetails[3]
+            clipi.append(allclips[chosenclips[i]]['curator']['name']) #ClipsDetails[4]
+            clipi.append(allclips[chosenclips[i]]['tracking_id']) #ClipsDetails[5]
+            clipi.append(allclips[chosenclips[i]]['thumbnails']['small']) #ClipsDetails[6]
+            #clipi.append(allclips[chosenclips[i]]['vod']['id']) #ClipsDetails[7]
+            
+            
             ClipsDetails.append(clipi)
             i=i+1      
            
@@ -196,14 +223,32 @@ def Tick():
         Trigger = 0
 
         ## LOADING THE CLIP, Clip slug: ClipsDetails[n][0]
+        
+        offsetleft = ClipsDetails[n][6].split("-preview")
+        vidurl = offsetleft[0]
+        fontstyle = ""
+        fontstyleend = ""
+        if MySettings.CNB:
+            fontstyle = fontstyle + "<b>"
+            fontstyleend = "</b>" + fontstyleend
+        if MySettings.CNI:
+            fontstyle = fontstyle + "<i>"
+            fontstyleend = "</i>" + fontstyleend
+        if MySettings.CNU:
+            fontstyle = fontstyle + "<u>"
+            fontstyleend = "</u>" + fontstyleend
+            
+        
+
+        
 
         #Save clip URL (here using embedded URL) to .html file
         html = str("<iframe src=\"https://clips.twitch.tv/embed?clip={}\" frameborder=\"0\" allowfullscreen=\"true\" height=\"{}\" width=\"{}\"></iframe>".format(ClipsDetails[n][0],MySettings.height,MySettings.width))
         htmlf = open("{}/ClipHTML.html".format(path),"w+")
-        htmlf.write(html)
+        htmlf.write("<!DOCTYPE html> \n <html> \n <head> \n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n <meta http-equiv=\"refresh\" content=\"{}\"> \n <style> \n .img {{position: fixed;top:{}px;left:{}px;z-index:1}} \n body{{background-color:{}}}\n .Clipno{{color: {};font-family: \"{}\";font-size: {}px;position: fixed;top: {}px;left: {}px;z-index: 2 }} \n .vid {{position: fixed;top: {}px;left:{}px;z-index: 0}} \n </style> \n </head> \n <body> \n <div class=\"img\"> <image src=\"Clip_Number_Background.png\" width= {}px height = {}px></image> </div> \n <div class= \"Clipno\"> <p> {} Clip {}: {} by {} {}</p>  </div> \n <div class=\"vid\"> \n <video width=\"{}\" height=\"{}\" controls autoplay >   \n <source src=\"{}.mp4\" type=\"video/mp4\" autoplay=\"true\"> \n Your browser does not support the video tag. \n </video> \n </div> \n <div class=\"clearfix\"></div> \n </body> \n </html> \n".format(ClipsDetails[n][2],MySettings.BGIT,MySettings.BGIL,MySettings.BGColour,MySettings.CNColour,MySettings.CNFont,int(MySettings.CNSize),MySettings.CNT,MySettings.CNL,MySettings.VT,MySettings.VL,MySettings.BGIW,MySettings.BGIH,fontstyle,n+1,ClipsDetails[n][1],ClipsDetails[n][4],fontstyleend,MySettings.width,MySettings.height,vidurl))
         htmlf.close()
         #Open browser and load html file.
-        os.system("start \"\" \"{}.exe\" \"{}\ClipHTML.html\"".format(MySettings.Browser,path))
+##        os.system("start \"\" \"{}.exe\" \"{}\ClipHTML.html\"".format(MySettings.Browser,path))
         
 
         ## END OF LOADING THE CLIP
@@ -212,6 +257,9 @@ def Tick():
         Clipno = open("{}/ClipNo.txt".format(path),"w+")
         Clipno.write(str("Clip {}".format(n+1)))
         Clipno.close()
+        Details = open("{}/ClipDetails.txt".format(path),"w+")
+        Details.write("{} by {}".format(ClipsDetails[n][1],ClipsDetails[n][4]))
+        Details.close()
 
         #Set current time  
         global t
@@ -228,7 +276,7 @@ def Tick():
         end = 1
 
     #After duration of clip + delay
-    if end == 1 and time.time() > t + ClipsDetails[n-1][2] + MySettings.NextClip:   
+    if end == 1 and time.time() > t + ClipsDetails[n-1][2]:   
         
         #Allow loading a new clip
         global Trigger

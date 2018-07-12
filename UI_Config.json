@@ -69,7 +69,7 @@
     "value": "month",
     "items": ["day","week","month","all"],
     "label": "Period",
-    "tooltip": "Period during which clips were made",
+    "tooltip": "Period during which clips were made \r\n Warning: \'all\' only works for new streamers as old clips have different formating",
     "group": "ClipSettings"
   },
     "Limit": {
@@ -79,7 +79,7 @@
     "min": 0,
     "max": 100,
     "ticks": 1,
-    "tooltip": "How many clips to retrieve from which clips will be randomly selected. \r\n Keep lower than how many clips are usually created within the period specified.",
+    "tooltip": "How many clips to retrieve from which clips will be randomly selected. \r\n Keep lower than how many clips are usually created within the period specified. \r\n Otherwise, you will face issues.",
     "group": "ClipSettings"
   },
     "NClips": {
@@ -97,8 +97,107 @@
     "value": "firefox",
     "items": ["firefox","chrome","iexplore"],
     "label": "Browser",
-    "tooltip": "The browser you want to use for clips. Pick one you do not use.",
+    "tooltip": "The browser you want to use for clips. Pick one you do not use. \r\n SLOBS does not capture IE. \r\n New Chrome policy is to disable autoplay. \r\n Therefore, best choice: Firefox",
     "group": "ClipSettings"
+  },
+    "NextClip": {
+    "type": "numberbox",
+    "value": 5,
+    "label": "Seconds before starting clips",
+    "tooltip": "Add a few seconds to account for the time it takes the browser to load",
+    "group": "ClipSettings"
+  },
+  "BGColour": {
+    "type": "colorpicker",
+    "label": "Background Colour",
+    "value": "rgba(0,17,233,1)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIW": {
+    "type": "numberbox",
+    "value": 550,
+    "label": "Background image - Width (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIH": {
+    "type": "numberbox",
+    "value": 50,
+    "label": "Background image - Height (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIT": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Background image position - Top (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIL": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Background image position - Left (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+  "CNColour": {
+    "type": "colorpicker",
+    "label": "Clip Number Colour",
+    "value": "rgba(255,0,0,255)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CNFont": {
+    "type": "dropdown",
+    "value": "Arial",
+    "items": ["Abadi MT Condensed Light","Arial","Arial Black","Arial Nova","Bahnschrift","Book Antiqua","Calibri","Calibri Light","Calisto MT","Cambria","Candara","Century Gothic","Comic Sans MS","Consolas","Constantia","Copperplate Gothic Light","Copperplate Gothic Bold","Corbel","Courier New","Franklin GothicMedium","Gabriola","Georgia","Georgia Pro","Gill Sans Nova","Impact","Lucida Console","Lucida Handwriting","Lucida Sans Unicode","Microsoft Sans Serif","Neue Haas Grotesk Text Pro","News Gothic MT","Palatino Linotype","Rockwell Nova","Segoe Print","Segoe Script","Segoe UI Symbol","Sitka Banner","Sitka Display","Sitka Heading","Sitka Small","Sitka Subheading","Sitka Text","Tahoma","Times New Roman","Trebuchet MS","Verdana","Verdana Pro","Webdings","Westminster"],
+    "label": "Clip Number Font",
+    "tooltip": "Not all fonts work.",
+    "group": "ClipColours"
+  },
+    "CNSize": {
+    "type": "numberbox",
+    "value": 15,
+    "label": "Clip Number Size (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CNB": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Bold",
+    "tooltip": "",
+  	"group": "ClipColours"
+  },
+    "CNI": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Italic",
+    "tooltip": "Command is only active when stream is live",
+  	"group": "ClipColours"
+  },
+    "CNU": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Underlined",
+    "tooltip": "",
+  	"group": "ClipColours"
+  },
+    "CNT": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Clip Number Position - Top (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CNL": {
+    "type": "numberbox",
+    "value": 150,
+    "label": "Clip Number Position - Left (px)",
+    "tooltip": "",
+    "group": "ClipColours"
   },
     "height": {
     "type": "numberbox",
@@ -114,12 +213,19 @@
     "tooltip": "Set width of clip on browser",
     "group": "ClipSettings"
   },
-    "NextClip": {
+    "VT": {
     "type": "numberbox",
-    "value": 5,
-    "label": "Seconds before moving to next clip",
-    "tooltip": "Add a few seconds to account for the time it takes the browser/clip to load",
-    "group": "ClipSettings"
+    "value": 0,
+    "label": "Clip position - Top (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "VL": {
+    "type": "numberbox",
+    "value": 10,
+    "label": "Clip posotion - Left (px)",
+    "tooltip": "",
+    "group": "ClipColours"
   },
     "StartAnnounce": {
     "type": "textbox",

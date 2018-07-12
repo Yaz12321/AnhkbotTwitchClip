@@ -12,7 +12,7 @@ import time, threading
 ScriptName = "ClipVote"
 Website = ""
 Creator = "Yaz12321"
-Version = "1.0"
+Version = "1.1"
 Description = "A like system to collect likes on clips, and give points to the creator of most liked clip."
 
 settingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
@@ -22,7 +22,8 @@ settingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
 #---------------------------------------
 
 # Version: 
-
+# > 1.1 <
+    # bug fixes
 # > 1.0 < 
     # Official Release
 
@@ -172,14 +173,17 @@ def Check():
         WinnerTitle = ClipDetails[n][1]
         WinnerTime = ClipDetails[n][3]
         ## pick a random voter of the winning clip
-        VWinner = Clips[n][Parent.GetRandom(0,len(Clips[n]))]
-        ## Add points to creator
-        Parent.AddPoints(CWinner.lower(),MySettings.PayoutCreator)
-        ##Add points to voter
-        Parent.AddPoints(VWinner.lower(),MySettings.PayoutVoter) 
-        Parent.SendTwitchMessage(MySettings.Response.format(n+1,WinCount,CWinner.upper(),MySettings.PayoutCreator,Parent.GetCurrencyName(),VWinner.upper(),MySettings.PayoutVoter,WinnerURL,WinnerTitle,WinnerTime))  #Announce winners
-        if CWinner not in Parent.GetViewerList():
-            Parent.SendTwitchMessage(MySettings.NotInChat.format(CWinner))
+        try:
+            VWinner = Clips[n][Parent.GetRandom(0,len(Clips[n]))]
+            ## Add points to creator
+            Parent.AddPoints(CWinner.lower(),MySettings.PayoutCreator)
+            ##Add points to voter
+            Parent.AddPoints(VWinner.lower(),MySettings.PayoutVoter) 
+            Parent.SendTwitchMessage(MySettings.Response.format(n+1,WinCount,CWinner.upper(),MySettings.PayoutCreator,Parent.GetCurrencyName(),VWinner.upper(),MySettings.PayoutVoter,WinnerURL,WinnerTitle,WinnerTime))  #Announce winners
+            if CWinner not in Parent.GetViewerList():
+                Parent.SendTwitchMessage(MySettings.NotInChat.format(CWinner))
+        except:
+            Parent.SendTwitchMessage("No one has liked any clips")
         
         global Clip1, Clip2, Clip3, Clip4, Clip5, Clip6, Clip7, Clip8, Clip9, Clip10
         Clip1 = Clip2 = Clip3 = Clip4 = Clip5 = Clip6 = Clip7 = Clip8 = Clip9 = Clip10 = []

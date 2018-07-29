@@ -1,0 +1,338 @@
+﻿{
+  "output_file": "settings.json",
+    "LiveOnly": {
+    "type": "checkbox",
+    "value": true,
+  	"label": "Only when live",
+    "tooltip": "Command is only active when stream is live",
+  	"group": "General"
+  },
+    "StartCommand": {
+    "type": "textbox",
+    "value": "!break",
+  	"label": "Start Command",
+    "tooltip": "The command to start the break",
+  	"group": "General"
+  },
+    "EndCommand": {
+    "type": "textbox",
+    "value": "!endbreak",
+  	"label": "End Command",
+    "tooltip": "The command to end the break and vote",
+  	"group": "General"
+  },
+    "VoteCommand": {
+    "type": "textbox",
+    "value": "!like",
+  	"label": "Like Command",
+    "tooltip": "The command to like",
+  	"group": "General"
+  },
+    "Permission": {
+    "type": "dropdown",
+    "value": "Caster",
+    "items": ["Everyone","Regular","Subscriber","GameWisp Subscriber","User_Specific","Min_Rank","Min_Points","Min_Hours","Moderator","Editor","Caster"],
+    "label": "Permission level",
+    "tooltip": "Set the permission level for the star/end commands",
+    "group": "General"
+  },
+    "PermissionInfo": {
+    "type": "textbox",
+    "value": "",
+    "label": "Permission level info",
+    "tooltip": "Set the user, rank or tier for permission",
+    "group": "General"
+  },
+    "PayoutCreator": {
+    "type": "numberbox",
+    "value": 30,
+    "label": "Payout to creator of winning clip",
+    "tooltip": "How many points to give to the creator of the winning clip",
+    "group": "General"
+  },
+    "PayoutVoter": {
+    "type": "numberbox",
+    "value": 10,
+    "label": "Payout to random voter",
+    "tooltip": "How many points to give to a random voter who liked the winning clip",
+    "group": "General"
+  },
+    "Channel": {
+    "type": "textbox",
+    "value": "",
+    "label": "Channel Name",
+    "tooltip": "Channel Name for clips. Keep empty for Stream Channel",
+    "group": "ClipSettings"
+  },
+    "Period": {
+    "type": "dropdown",
+    "value": "month",
+    "items": ["day","week","month","all"],
+    "label": "Period",
+    "tooltip": "Period during which clips were made \r\n Warning: \'all\' only works for new streamers as old clips have different formating",
+    "group": "ClipSettings"
+  },
+    "Limit": {
+    "type": "slider",
+    "label": "Number of retrieved clips",
+    "value": 30,
+    "min": 0,
+    "max": 100,
+    "ticks": 1,
+    "tooltip": "How many clips to retrieve from which clips will be randomly selected. \r\n Keep lower than how many clips are usually created within the period specified. \r\n Otherwise, you will face issues.",
+    "group": "ClipSettings"
+  },
+    "NClips": {
+    "type": "slider",
+    "label": "Number of displayed clips",
+    "value": 10,
+    "min": 1,
+    "max": 10,
+    "ticks": 1,
+    "tooltip": "Number of clips to be shown.",
+    "group": "ClipSettings"
+  },
+    "Browser": {
+    "type": "dropdown",
+    "value": "firefox",
+    "items": ["firefox","chrome","iexplore","BrowserSource"],
+    "label": "Browser",
+    "tooltip": "The browser you want to use for clips. Pick one you do not use. \r\n SLOBS does not capture IE. \r\n New Chrome policy is to disable autoplay. \r\n Therefore, best choice: Firefox \r\n BrowserSource is currently only available on OBS Studio. \r\n   In case of BrowserSource: add Browser as a source instead of Capture Window.",
+    "group": "ClipSettings"
+  },
+    "NextClip": {
+    "type": "numberbox",
+    "value": 5,
+    "label": "Seconds before starting clips",
+    "tooltip": "Add a few seconds to account for the time it takes the browser to load \r\n Set to 0 if BrowserSource",
+    "group": "ClipSettings"
+  },
+  "BGColour": {
+    "type": "colorpicker",
+    "label": "Background Colour",
+    "value": "rgba(0,17,233,1)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIW": {
+    "type": "numberbox",
+    "value": 700,
+    "label": "Background image - Width (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIH": {
+    "type": "numberbox",
+    "value": 50,
+    "label": "Background image - Height (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIT": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Background image position - Top (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "BGIL": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Background image position - Left (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+  "CNColour": {
+    "type": "colorpicker",
+    "label": "Clip Number Colour",
+    "value": "rgba(255,0,0,255)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CNFont": {
+    "type": "dropdown",
+    "value": "Arial",
+    "items": ["Abadi MT Condensed Light","Albertus Extra Bold","Albertus Medium","Allegro","Amazone BT","AmerType Md BT","Antique Olive","Arial Black","Arial MT","Arial Narrow","Arial","Arrus BT","Aurora Cn BT","AvantGarde Bk BT","AvantGarde Md BT","BankGothic Md BT","Bazooka","Benguiat Bk BT","BernhardFashion BT","BernhardMod BT","BinnerD","Book Antiqua","Bookman Old Style","Boulder","Bremen Bd BT","Calisto MT","Calligrapher","CaslonOpnface BT","Century Gothic","Century Schoolbook","Cezanne","CG Omega","CG Times","Charlesworth","Charter Bd BT","Charter BT","Chaucer","ChelthmITC Bk BT","Clarendon Condensed","CloisterBlack BT","Comic Sans MS","Copperplate Gothic Bold","Copperplate Gothic Light","CopperplGoth Bd BT","Cornerstone","Coronet","Courier New","Courier","Cuckoo","Dauphin","Denmark","English 111 Vivace BT","EngraversGothic BT","Exotc350 Bd BT","Fransiscan","Freefrm721 Blk BT","FrnkGothITC Bk BT","Futura Bk BT","Futura Lt BT","Futura Md BT","Futura ZBlk BT","FuturaBlack BT","Galliard BT","Garamond","Geneva","Geometr231 BT","Geometr231 Hv BT","Geometr231 Lt BT","GeoSlab 703 Lt BT","GeoSlab 703 XBd BT","GoudyHandtooled BT","GoudyOLSt BT","Haettenschweiler","Heather","Helvetica","Herald","Humanst 521 Cn BT","Humanst521 BT","Humanst521 Lt BT","Impact","Incised901 Bd BT","Incised901 BT","Incised901 Lt BT","Informal011 BT","Jester","Kabel Bk BT","Kabel Ult BT","Kaufmann Bd BT","Kaufmann BT","Korinna BT","Letter Gothic","Lithograph Light","Lithograph","Long Island","Lucida Console","Lucida Handwriting","Lucida Sans Unicode","Lucida Sans","Lydian BT","Marigold","Market","Matisse ITC","Monotype Corsiva","MS LineDraw","News GothicMT","NewsGoth BT","OCR A Extended","Old Century","Onyx BT","OzHandicraft BT","Pegasus","Pickwick","Poster","PosterBodoni BT","PTBarnum BT","Pythagoras","Ribbon131 Bd BT","Sceptre","Serifa BT","Serifa Th BT","ShelleyVolante BT","Sherwood","Signboard","Socket","Souvenir Lt BT","Staccato222 BT","Steamer","Storybook","Subway","Swis721 BlkEx BT","Swiss911 XCm BT","Tahoma","Technical","Teletype","Tempus Sans ITC","Times New Roman PS","Times New Roman","Times","Trebuchet MS","Tristan","Tubular","TypoUpright BT","Unicorn","Univers Condensed","Univers","Vagabond","Verdana","Westminster","ZapfEllipt BT","ZapfHumnst BT","ZapfHumnst Dm BT","Zurich BlkEx BT","Zurich Ex BT"],
+    "label": "Clip Number Font",
+    "tooltip": "Not all fonts work.",
+    "group": "ClipColours"
+  },
+    "CNSize": {
+    "type": "numberbox",
+    "value": 15,
+    "label": "Clip Number Size (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CNB": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Bold",
+    "tooltip": "",
+  	"group": "ClipColours"
+  },
+    "CNI": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Italic",
+    "tooltip": "Command is only active when stream is live",
+  	"group": "ClipColours"
+  },
+    "CNU": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Underlined",
+    "tooltip": "",
+  	"group": "ClipColours"
+  },
+    "CNT": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Clip Number Position - Top (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CNL": {
+    "type": "numberbox",
+    "value": 150,
+    "label": "Clip Number Position - Left (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+  "CDColour": {
+    "type": "colorpicker",
+    "label": "Clip Details Colour",
+    "value": "rgba(255,0,0,255)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CDFont": {
+    "type": "dropdown",
+    "value": "Arial",
+    "items": ["Abadi MT Condensed Light","Albertus Extra Bold","Albertus Medium","Allegro","Amazone BT","AmerType Md BT","Antique Olive","Arial Black","Arial MT","Arial Narrow","Arial","Arrus BT","Aurora Cn BT","AvantGarde Bk BT","AvantGarde Md BT","BankGothic Md BT","Bazooka","Benguiat Bk BT","BernhardFashion BT","BernhardMod BT","BinnerD","Book Antiqua","Bookman Old Style","Boulder","Bremen Bd BT","Calisto MT","Calligrapher","CaslonOpnface BT","Century Gothic","Century Schoolbook","Cezanne","CG Omega","CG Times","Charlesworth","Charter Bd BT","Charter BT","Chaucer","ChelthmITC Bk BT","Clarendon Condensed","CloisterBlack BT","Comic Sans MS","Copperplate Gothic Bold","Copperplate Gothic Light","CopperplGoth Bd BT","Cornerstone","Coronet","Courier New","Courier","Cuckoo","Dauphin","Denmark","English 111 Vivace BT","EngraversGothic BT","Exotc350 Bd BT","Fransiscan","Freefrm721 Blk BT","FrnkGothITC Bk BT","Futura Bk BT","Futura Lt BT","Futura Md BT","Futura ZBlk BT","FuturaBlack BT","Galliard BT","Garamond","Geneva","Geometr231 BT","Geometr231 Hv BT","Geometr231 Lt BT","GeoSlab 703 Lt BT","GeoSlab 703 XBd BT","GoudyHandtooled BT","GoudyOLSt BT","Haettenschweiler","Heather","Helvetica","Herald","Humanst 521 Cn BT","Humanst521 BT","Humanst521 Lt BT","Impact","Incised901 Bd BT","Incised901 BT","Incised901 Lt BT","Informal011 BT","Jester","Kabel Bk BT","Kabel Ult BT","Kaufmann Bd BT","Kaufmann BT","Korinna BT","Letter Gothic","Lithograph Light","Lithograph","Long Island","Lucida Console","Lucida Handwriting","Lucida Sans Unicode","Lucida Sans","Lydian BT","Marigold","Market","Matisse ITC","Monotype Corsiva","MS LineDraw","News GothicMT","NewsGoth BT","OCR A Extended","Old Century","Onyx BT","OzHandicraft BT","Pegasus","Pickwick","Poster","PosterBodoni BT","PTBarnum BT","Pythagoras","Ribbon131 Bd BT","Sceptre","Serifa BT","Serifa Th BT","ShelleyVolante BT","Sherwood","Signboard","Socket","Souvenir Lt BT","Staccato222 BT","Steamer","Storybook","Subway","Swis721 BlkEx BT","Swiss911 XCm BT","Tahoma","Technical","Teletype","Tempus Sans ITC","Times New Roman PS","Times New Roman","Times","Trebuchet MS","Tristan","Tubular","TypoUpright BT","Unicorn","Univers Condensed","Univers","Vagabond","Verdana","Westminster","ZapfEllipt BT","ZapfHumnst BT","ZapfHumnst Dm BT","Zurich BlkEx BT","Zurich Ex BT"],
+    "label": "Clip Details Font",
+    "tooltip": "Not all fonts work.",
+    "group": "ClipColours"
+  },
+    "CDSize": {
+    "type": "numberbox",
+    "value": 15,
+    "label": "Clip Details Size (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CDB": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Bold",
+    "tooltip": "",
+  	"group": "ClipColours"
+  },
+    "CDI": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Italic",
+    "tooltip": "Command is only active when stream is live",
+  	"group": "ClipColours"
+  },
+    "CDU": {
+    "type": "checkbox",
+    "value": false,
+  	"label": "Underlined",
+    "tooltip": "",
+  	"group": "ClipColours"
+  },
+    "CDP": {
+    "type": "dropdown",
+    "value": "relative",
+    "items": ["relative","fixed"],
+    "label": "Position of details relative to Clip Number",
+    "tooltip": "Relative to place details relative to Clip Number \r\nFixed to place details independent of Clip Number",
+    "group": "ClipColours"
+  },
+    "CDT": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Clip Details Position - Top (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "CDL": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Clip Details Position - Left (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "height": {
+    "type": "numberbox",
+    "value": 378,
+    "label": "Height of clip",
+    "tooltip": "Set height of clip on browser",
+    "group": "ClipSettings"
+  },
+    "width": {
+    "type": "numberbox",
+    "value": 620,
+    "label": "Width of clip",
+    "tooltip": "Set width of clip on browser",
+    "group": "ClipSettings"
+  },
+    "VT": {
+    "type": "numberbox",
+    "value": 20,
+    "label": "Clip position - Top (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "VL": {
+    "type": "numberbox",
+    "value": 20,
+    "label": "Clip posotion - Left (px)",
+    "tooltip": "",
+    "group": "ClipColours"
+  },
+    "StartAnnounce": {
+    "type": "textbox",
+    "value": "Send {0} followed by the number to give a like to the clip you like",
+    "label": "Start Message",
+    "tooltip": "Message to announce starting the vote \r\n {0} = vote command",
+    "group": "Responses"
+  },
+    "FinalWarning": {
+    "type": "textbox",
+    "value": "You have around {0} seconds left to like the clips",
+    "label": "Ending Warning",
+    "tooltip": "Message to announce voting will end soon. \r\n {0} = delay",
+    "group": "Responses"
+  },
+    "Delay": {
+    "type": "numberbox",
+    "value": 30,
+    "label": "End Voting Delay (seconds)",
+    "tooltip": "Delay to end voting after end command.",
+    "group": "Responses"
+  },
+    "VoteResponse": {
+    "type": "textbox",
+    "value": "{0}, thanks for liking Clip {1}",
+    "label": "Vote response",
+    "tooltip": "Message sent when user likes a clip \r\n {0} = user \r\n {1} = Clip number",
+    "group": "Responses"
+  },
+    "Response": {
+    "type": "textbox",
+    "value": "The winning clip was Clip {0} with {1} like(s). The clip is called {8}, and was created by: {2} on {9} (You can rewatch it on: {7}). {2} has received {3} {4} for creating the clips. And {5} has received {6} {4} for liking it!",
+    "label": "Winning message",
+    "tooltip": " {0} = Winning Clip number \r\n {1} = number of likes \r\n {2} = Creator \r\n {3} = Payout to creator \r\n {4} = currency name \r\n {5} = random voter \r\n {6} = Payout to random voter \r\n {7} = URL to clip \r\n {8} = Title of clip \r\n {9} = Time/Date of clip",
+    "group": "Responses"
+  },
+    "NotInChat": {
+    "type": "textbox",
+    "value": "{0} did not receive their winnings because they are not in chat!",
+    "label": "Not in chat message",
+    "tooltip": "Clip creators can only receive points if they are in chat. Message if not in chat \r\n {0} = creator",
+    "group": "Responses"
+  },
+
+}

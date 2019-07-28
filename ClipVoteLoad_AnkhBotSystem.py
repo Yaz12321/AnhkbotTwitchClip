@@ -4,7 +4,7 @@
 import clr, sys, json, os, codecs
 clr.AddReference("IronPython.SQLite.dll")
 clr.AddReference("IronPython.Modules.dll")
-import time, threading
+import time, threading, datetime
 from ast import literal_eval
 
 #---------------------------------------
@@ -13,7 +13,7 @@ from ast import literal_eval
 ScriptName = "ClipVoteLoad"
 Website = ""
 Creator = "Yaz12321"
-Version = "1.0"
+Version = "1.1"
 Description = "Load clips on stream, and let viewers like their favourites"
 
 settingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
@@ -23,6 +23,10 @@ settingsFile = os.path.join(os.path.dirname(__file__), "settings.json")
 #---------------------------------------
 
 # Version: 
+
+
+# > 1.1 <
+    # Added a feature to log winners.
 
 # > 1.0 < 
     # Official Release - Joined Voting and Loading scripts
@@ -147,7 +151,7 @@ try:
 except NameError:
     end = 0
 
-    
+
 def Execute(data):
     path = os.path.dirname(os.path.abspath(__file__))
 
@@ -262,14 +266,18 @@ def Execute(data):
             os.system("taskkill /IM {}.exe".format(MySettings.Browser))
 ####
     #Voting    
-    if live == True and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.VoteCommand and Trigger == 1 and 0 < int(data.GetParam(1)) <= loaded:
-        
-	##Check if user already liked the clip
-        if data.User not in Clips[int(data.GetParam(1))-1]:
-            ##add voter name to voted clip
-            global Clips
-            Clips[int(data.GetParam(1))-1] = Clips[int(data.GetParam(1))-1] +[data.User]
-            Parent.SendTwitchMessage(MySettings.VoteResponse.format(data.UserName,data.GetParam(1)))
+    if live == True and data.IsChatMessage() and data.GetParam(0).lower() == MySettings.VoteCommand and Trigger == 1:
+        try:
+            if 0 < int(data.GetParam(1)) <= loaded:
+            
+                ##Check if user already liked the clip
+                if data.User not in Clips[int(data.GetParam(1))-1]:
+                    ##add voter name to voted clip
+                    global Clips
+                    Clips[int(data.GetParam(1))-1] = Clips[int(data.GetParam(1))-1] +[data.User]
+                    Parent.SendTwitchMessage(MySettings.VoteResponse.format(data.UserName,data.GetParam(1)))
+        except:
+            Parent.SendTwitchMessage("{}, NO! Just NO!".format(data.UserName))
           
     return
 
@@ -311,6 +319,33 @@ def Check():
             Parent.SendTwitchMessage(MySettings.Response.format(n+1,WinCount,CWinner.upper(),MySettings.PayoutCreator,Parent.GetCurrencyName(),VWinner.upper(),MySettings.PayoutVoter,WinnerURL,WinnerTitle,WinnerTime))  #Announce winners
             if CWinner not in Parent.GetViewerList():
                 Parent.SendTwitchMessage(MySettings.NotInChat.format(CWinner))
+
+            path = os.path.dirname(os.path.abspath(__file__))
+
+            try:
+                Winnerslog = open("{}/WinList.txt".format(path),"a+")
+            except:
+                Winnerslog = open("{}/WinList.txt".format(path),"w+")
+
+            winclip = str(datetime.datetime.now()) + ": " + CWinner + " (" + WinnerTitle + "), " + WinnerURL + "\n"
+            Winnerslog.write(winclip)
+            Winnerslog.close()
+
+            try:
+                Winsum = open("{}/WinLog.txt".format(path),"r+")
+                Winnerssum = Winsum.read()
+                Winsum.close()
+                ws = literal_eval(Winnerssum)
+            except:
+                ws = {}
+            
+            try:
+                ws[CWinner] = ws[CWinner] + 1
+            except:
+                ws[CWinner] = 1
+            Winsum = open("{}/WinLog.txt".format(path),"w+")
+            Winsum.write(str(ws))
+            Winsum.close()
         except:
             Parent.SendTwitchMessage("No one has liked any clips")
         
@@ -363,7 +398,10 @@ def Tick():
 
         #Save clip URL (here using embedded URL) to .html file
         htmlf = open("{}/ClipHTML.html".format(path),"w+")
-        htmlf.write("<!DOCTYPE html> \n <html> \n <head> \n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n <meta http-equiv=\"refresh\" content=\"{}\"> \n <style> \n .img {{position: fixed;top:{}px;left:{}px;z-index:1}} \n body{{background-color:{}}}\n .Clipno{{color: {};font-family: \"{}\";font-size: {}px;position: fixed;top: {}px;left: {}px;z-index: 2 }} \n ClipD{{color: {};font-family: \"{}\";font-size: {}px;position: {};top: {}px;left: {}px;z-index: 2 }} \n .vid {{position: fixed;top: {}px;left:{}px;z-index: 0}} \n </style> \n </head> \n <body> \n <div class=\"img\"> <image src=\"Clip_Number_Background.png\" width= {}px height = {}px></image> </div> \n <div class= \"Clipno\"> <p> {} Clip {} {} <ClipD> {} {} by {} {}  </ClipD>  </div> \n <div class=\"vid\"> \n <video width=\"{}\" height=\"{}\" controls autoplay >   \n <source src=\"{}.mp4\" type=\"video/mp4\" autoplay=\"true\"> \n Your browser does not support the video tag. \n </video> \n </div> \n <div class=\"clearfix\"></div> \n </body> \n </html> \n".format(ClipsDetails[nl][2],MySettings.BGIT,MySettings.BGIL,MySettings.BGColour,MySettings.CNColour,MySettings.CNFont,int(MySettings.CNSize),MySettings.CNT,MySettings.CNL,MySettings.CDColour,MySettings.CDFont,int(MySettings.CDSize),MySettings.CDP,MySettings.CDT,MySettings.CDL,MySettings.VT,MySettings.VL,MySettings.BGIW,MySettings.BGIH,fontstyle,nl+1,fontstyleend,fontdstyle,ClipsDetails[nl][1],ClipsDetails[nl][4],fontdstyleend,MySettings.width,MySettings.height,vidurl))
+        try:
+            htmlf.write("<!DOCTYPE html> \n <html> \n <head> \n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n <meta http-equiv=\"refresh\" content=\"{}\"> \n <style> \n .img {{position: fixed;top:{}px;left:{}px;z-index:1}} \n body{{background-color:{}}}\n .Clipno{{color: {};font-family: \"{}\";font-size: {}px;position: fixed;top: {}px;left: {}px;z-index: 2 }} \n ClipD{{color: {};font-family: \"{}\";font-size: {}px;position: {};top: {}px;left: {}px;z-index: 2 }} \n .vid {{position: fixed;top: {}px;left:{}px;z-index: 0}} \n </style> \n </head> \n <body> \n <div class=\"img\"> <image src=\"Clip_Number_Background.png\" width= {}px height = {}px></image> </div> \n <div class= \"Clipno\"> <p> {} Clip {} {} <ClipD> {} {} by {} {}  </ClipD>  </div> \n <div class=\"vid\"> \n <video width=\"{}\" height=\"{}\" controls autoplay >   \n <source src=\"{}.mp4\" type=\"video/mp4\" autoplay=\"true\"> \n Your browser does not support the video tag. \n </video> \n </div> \n <div class=\"clearfix\"></div> \n </body> \n </html> \n".format(ClipsDetails[nl][2],MySettings.BGIT,MySettings.BGIL,MySettings.BGColour,MySettings.CNColour,MySettings.CNFont,int(MySettings.CNSize),MySettings.CNT,MySettings.CNL,MySettings.CDColour,MySettings.CDFont,int(MySettings.CDSize),MySettings.CDP,MySettings.CDT,MySettings.CDL,MySettings.VT,MySettings.VL,MySettings.BGIW,MySettings.BGIH,fontstyle,nl+1,fontstyleend,fontdstyle,ClipsDetails[nl][1],ClipsDetails[nl][4],fontdstyleend,MySettings.width,MySettings.height,vidurl))
+        except:
+            pass
         htmlf.close()
         #Open browser and load html file.
 ##        os.system("start \"\" \"{}.exe\" \"{}\ClipHTML.html\"".format(MySettings.Browser,path))

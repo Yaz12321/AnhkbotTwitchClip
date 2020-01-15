@@ -20,5 +20,6 @@ Consists of 2 scripts. One for loading clips, and one for voting.
 5- On Streamlabs Chatbot, set the display scene and the main scene hotkeys to macro 1 and macro 2. Set macro 1 and macro 2 to "Start" and "End" commands.
 
 
+Note: With the new twitch points system, the script still works fine even if the bot currency is disabled.
 
 Check out more of my scripts: https://github.com/Yaz12321?tab=repositories
